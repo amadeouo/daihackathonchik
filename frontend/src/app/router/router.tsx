@@ -1,9 +1,15 @@
 import { createBrowserRouter } from 'react-router-dom'
+import { Home } from "@/pages/home/ui";
+import {Login} from "@/pages/login/ui";
+import {RequireAuth} from "@/app/require-auth/RequireAuth.tsx";
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element: '',
+    element:
+      <RequireAuth>
+        <Home />
+      </RequireAuth>,
     children: [
       {
         index: true,
@@ -21,6 +27,7 @@ export const router = createBrowserRouter([
     ]
   },
   {
-    path: '/auth'
+    path: '/login',
+    element: <Login />,
   }
 ])

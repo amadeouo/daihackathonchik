@@ -1,6 +1,12 @@
 @import "tailwindcss";
 @import "tw-animate-css";
 
+@font-face {
+  font-family: 'Roboto Flex';
+  font-weight: 400;
+  src: url("assets/fonts/RobotoFlex.woff2") format("woff2");
+}
+
 @custom-variant dark (&:is(.dark *));
 
 @theme inline {
@@ -79,6 +85,7 @@
   --color-white: #FFFFFF;
   --color-black: #000000;
   --color-light-purple: #734AC6;
+  --color-purple: #724AC5;
   --color-ultralight-purple: #DBC5EE;
   --color-dark-purple: #641CB1;
   --color-dark-blue: #01033E;
@@ -139,10 +146,4 @@
   body {
     @apply bg-background text-foreground;
   }
-}
-
-@font-face {
-  font-family: 'Roboto Flex';
-  font-weight: 400;
-  src: url("assets/fonts/RobotoFlex.woff2") format("woff2");
 }

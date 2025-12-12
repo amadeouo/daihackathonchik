@@ -1,0 +1,27 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  justify-content: center;
+}
+
+.wrapperTitle {
+  display: flex;
+  flex-direction: column;
+}
+
+.title {
+  font-size: 32px;
+  text-align: center;
+}
+
+.desc {
+  text-align: center;
+  font-size: 15px;
+}
+
+.button {
+  position: absolute;
+  bottom: 34px;
+}

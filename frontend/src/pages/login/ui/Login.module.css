@@ -1,0 +1,58 @@
+.wrapper {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  height: 100%;
+  justify-content: center;
+}
+
+.wrapperTitle {
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  margin-bottom: 20px;
+}
+
+.title {
+  font-size: 32px;
+  text-align: center;
+}
+
+.desc {
+  text-align: center;
+  font-size: 15px;
+}
+
+.button {
+  position: absolute;
+  bottom: 34px;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.input {
+  position: relative;
+  background-color: var(--color-white);
+  color: var(--color-black);
+  width: 100%;
+  padding: 11px 20px;
+  border-radius: var(--border-radius-l);
+  margin-bottom: 10px;
+
+  &::placeholder {
+    text-align: center;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.label {
+  position: absolute;
+  color: var(--color-black);
+}
