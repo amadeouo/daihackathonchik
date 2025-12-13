@@ -56,3 +56,48 @@
   position: absolute;
   color: var(--color-black);
 }
+
+.errorOverlay {
+  position: fixed;
+  inset: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background: rgba(0, 0, 0, 0.4);
+  z-index: 1000;
+}
+
+.errorModal {
+  display: flex;
+  flex-direction: column;
+  padding: 20px;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-m);
+  color: var(--color-black);
+}
+
+.buttonWrapper {
+  display: flex;
+  justify-content: flex-end;
+}
+
+.errorButtonBack {
+  margin-bottom: 40px;
+}
+
+.errorMessage {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  padding: 10px 20px;
+  margin-bottom: 77px;
+  text-align: center;
+}
+
+.errorHeader {
+  font-size: 40px;
+}
+
+.errorDesc {
+  font-size: 15px;
+}

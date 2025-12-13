@@ -5,13 +5,14 @@ import { useLogin } from "@/shared/hooks/useLogin.ts";
 import {useNavigate} from "react-router-dom";
 import {api} from "@/shared/utils/api.ts";
 import {useAuth} from "@/app/auth-context/hooks/useAuth.ts";
+import {ButtonBack} from "@/shared/buttons/button-back/ui";
 
 type PostDataUserType = {
   telegram: string
 }
 
 export const Login = () => {
-  const { user, login, setUser} = useLogin()
+  const { login, setUser, error, setError } = useLogin()
   const [formData, setFormData] = useState<PostDataUserType>({
     telegram: '',
   })
@@ -22,9 +23,6 @@ export const Login = () => {
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
     login(formData.telegram)
-    if (!user) {
-      navigate('/home')
-    }
   }
 
   const handleData = (event: ChangeEvent<HTMLInputElement>) => {
@@ -88,9 +86,25 @@ export const Login = () => {
         </Button>
       </form>
 
-      <div className={classes.errorModal}>
-
-      </div>
+      {error && (
+        <div className={classes.errorOverlay}>
+          <div className={classes.errorModal}>
+            <div className={classes.buttonWrapper}>
+              <ButtonBack
+                className={classes.errorButtonBack}
+                arrow
+                onClick={() => setError(null)}
+              />
+            </div>
+            <div className={classes.errorMessage}>
+              <h2 className={classes.errorHeader}>Ошибка входа</h2>
+              <p className={classes.errorDesc}>
+                Кажется, то‑то пошло не так. Проверьте корректность ника и попробуйте ещё раз.
+              </p>
+            </div>
+          </div>
+        </div>
+      )}
     </main>
   )
 }
