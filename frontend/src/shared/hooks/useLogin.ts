@@ -1,5 +1,6 @@
 import { useState } from "react";
 import { api } from "@/shared/utils/api.ts";
+import {useNavigate} from "react-router-dom";
 
 export interface UserResponse {
   id: number;
@@ -22,6 +23,7 @@ export const useLogin = () => {
   const [user, setUser] = useState<LoginResponse['user'] | null>(null)
   const [error, setError] = useState<null | string>(null)
   const [loading, setLoading] = useState(false)
+  const navigate = useNavigate()
 
   const login = (username: string) => {
     setLoading(true)
@@ -31,6 +33,7 @@ export const useLogin = () => {
       .then((response) => {
         const { user } = response.data
         setUser(user)
+        navigate('/home')
       })
       .catch((error) => {
         setError(error.response?.data?.detail || error.message || "Ошибка авторизации")
@@ -60,5 +63,6 @@ export const useLogin = () => {
     login,
     logout,
     setUser,
+    setError,
   }
 }
