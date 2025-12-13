@@ -15,9 +15,6 @@ export interface UserResponse {
 }
 
 export interface LoginResponse {
-  access_token: string;
-  refresh_token: string;
-  token_type: string;
   user: UserResponse;
 }
 
@@ -33,7 +30,7 @@ export const useLogin = () => {
       .post('/auth/login', {telegram_username: username,})
       .then((response) => {
         const { user } = response.data
-        setUser({...user})
+        setUser(user)
       })
       .catch((error) => {
         setError(error.response?.data?.detail || error.message || "Ошибка авторизации")
@@ -62,5 +59,6 @@ export const useLogin = () => {
     loading,
     login,
     logout,
+    setUser,
   }
 }

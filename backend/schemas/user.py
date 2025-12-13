@@ -183,7 +183,7 @@ class TokenResponse(BaseModel):
 
 class RefreshTokenRequest(BaseModel):
     """Схема запроса обновления токена."""
-    refresh_token: str
+    refresh_token: Optional[str] = None
     
     model_config = ConfigDict(
         json_schema_extra={

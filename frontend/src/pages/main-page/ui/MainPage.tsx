@@ -1,8 +1,8 @@
-import classes from './Home.module.css'
+import classes from './MainPage.module.css'
 import { Link } from "react-router-dom";
-import { Button } from "@/shared/button/ui";
+import { Button } from "@/shared/buttons/button/ui";
 
-export const Home = () => {
+export const MainPage = () => {
   return (
     <main className={classes.wrapper}>
       <div className={classes.wrapperTitle}>
@@ -12,7 +12,7 @@ export const Home = () => {
         </p>
       </div>
       <Link to="/login">
-        <Button className={classes.button}>Войти через телеграм</Button>
+        <Button className={classes.button}>Войти</Button>
       </Link>
     </main>
   )

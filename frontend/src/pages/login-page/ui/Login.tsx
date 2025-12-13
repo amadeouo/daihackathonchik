@@ -1,25 +1,29 @@
 import classes from './Login.module.css'
-import {Button} from "@/shared/button/ui";
-import {type ChangeEvent, type FormEvent, useState} from "react";
+import {Button} from "@/shared/buttons/button/ui";
+import {type ChangeEvent, type FormEvent, useEffect, useState} from "react";
 import { useLogin } from "@/shared/hooks/useLogin.ts";
 import {useNavigate} from "react-router-dom";
+import {api} from "@/shared/utils/api.ts";
+import {useAuth} from "@/app/auth-context/hooks/useAuth.ts";
 
 type PostDataUserType = {
   telegram: string
 }
 
 export const Login = () => {
-  const { user, login } = useLogin()
+  const { user, login, setUser} = useLogin()
   const [formData, setFormData] = useState<PostDataUserType>({
     telegram: '',
   })
+  const [loadingAutoAuth, setLoadingAutoAuth] = useState<boolean>(false)
   const navigate = useNavigate()
+  const {isRedirectFromRoot, setIsRedirectFromRoot} = useAuth()
 
   const handleSubmit = (event: FormEvent) => {
     event.preventDefault()
     login(formData.telegram)
     if (!user) {
-      navigate('')
+      navigate('/home')
     }
   }
 
@@ -29,6 +33,29 @@ export const Login = () => {
       ...prevState,
       [name]: value,
     }))
+  }
+
+  useEffect(() => {
+    if (isRedirectFromRoot) {
+      setIsRedirectFromRoot(false)
+      return
+    }
+
+    setLoadingAutoAuth(true)
+    api
+      .get('/auth/me')
+      .then((response) => {
+        setUser(response.data.user)
+        navigate('/home')
+      })
+      .catch(() => {})
+      .finally(() => setLoadingAutoAuth(false))
+  }, [])
+
+  if (loadingAutoAuth) {
+    return (
+      <div className={classes.loading}>Loading...</div>
+    )
   }
 
   return (
@@ -60,6 +87,10 @@ export const Login = () => {
           Войти
         </Button>
       </form>
+
+      <div className={classes.errorModal}>
+
+      </div>
     </main>
   )
 }

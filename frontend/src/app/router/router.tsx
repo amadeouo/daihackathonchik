@@ -1,19 +1,16 @@
 import { createBrowserRouter } from 'react-router-dom'
-import { Home } from "@/pages/home/ui";
-import {Login} from "@/pages/login/ui";
-import {RequireAuth} from "@/app/require-auth/RequireAuth.tsx";
+import { MainPage } from "@/pages/main-page/ui";
+import {Login} from "@/pages/login-page/ui";
+import {AppLayout} from "@/widgets/app-layout/ui/AppLayout";
+import {RequireRoute} from "@/app/require-route/RequireRoute.tsx";
 
 export const router = createBrowserRouter([
   {
     path: '/',
-    element:
-      <RequireAuth>
-        <Home />
-      </RequireAuth>,
+    element: <RequireRoute> <AppLayout /> </RequireRoute>,
     children: [
       {
-        index: true,
-        path: 'main',
+        path: 'home',
         element: '',
       },
       {
@@ -25,6 +22,10 @@ export const router = createBrowserRouter([
         element: '',
       }
     ]
+  },
+  {
+    path: '/main',
+    element: <MainPage />,
   },
   {
     path: '/login',
