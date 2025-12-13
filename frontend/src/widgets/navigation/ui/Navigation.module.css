@@ -1,3 +1,84 @@
 .wrapper {
+  position: fixed;
+  left: 50%;
+  bottom: 34px;
+  transform: translateX(-50%);
+  z-index: 1000;
 
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 47px;
+
+  padding: 13px 25px;
+  border-radius: var(--border-radius-l);
+
+  background: var(--color-dark-blue);
+}
+
+/* общие стили для иконок-кнопок */
+.icon {
+  all: unset;
+  cursor: pointer;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 36px;
+  height: 36px;
+  border-radius: 999px;
+
+  opacity: 0.8;
+  transition:
+    transform 0.18s ease,
+    opacity 0.18s ease,
+    background-color 0.18s ease,
+    box-shadow 0.18s ease;
+}
+
+.icon svg {
+  display: block;
+  transition: transform 0.18s ease, filter 0.18s ease, opacity 0.18s ease;
+}
+
+/* hover: лёгкий подъём и увеличение */
+.icon:hover {
+  opacity: 1;
+  transform: translateY(-3px);
+}
+
+.icon:hover svg {
+  transform: scale(1.05);
+}
+
+/* активный пункт (как слева на картинке) */
+.iconActive {
+  background: radial-gradient(
+    90px 90px at 50% 50%,
+    rgba(208, 164, 255, 0.65),
+    rgba(31, 9, 75, 0.1)
+  );
+  box-shadow:
+    0 0 24px rgba(208, 164, 255, 0.8),
+    0 8px 18px rgba(0, 0, 0, 0.45);
+  opacity: 1;
+  transform: translateY(-4px);
+}
+
+.iconActive svg {
+  transform: scale(1.08);
+  filter: drop-shadow(0 0 8px rgba(251, 242, 255, 0.95));
+}
+
+/* клик-анимация */
+.icon:active {
+  transform: translateY(-1px) scale(0.94);
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.5);
+}
+
+/* фокус с клавиатуры */
+.icon:focus-visible {
+  outline: 2px solid #fbf2ff;
+  outline-offset: 2px;
 }
