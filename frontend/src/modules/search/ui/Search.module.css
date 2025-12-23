@@ -1,0 +1,27 @@
+.wrapper {
+  border: 1px solid white;
+  display: flex;
+  align-items: center;
+  background-color: var(--color-white);
+  border-radius: var(--border-radius-s);
+  color: var(--color-black);
+  gap: 7px;
+  padding: 7px 13px;
+}
+
+.input {
+  width: 100%;
+  font-size: 13px;
+
+  &::placeholder {
+    color: var(--color-gray-text);
+  }
+
+  &::-webkit-search-cancel-button {
+    background-color: var(--color-black);
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
