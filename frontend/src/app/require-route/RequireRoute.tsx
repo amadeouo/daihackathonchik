@@ -13,17 +13,20 @@ export const RequireRoute = ({children} : {children: ReactNode}) => {
     if (user) {
       return
     }
+
     api
       .get('/auth/me')
       .then((response) => {
         setUser(response.data.user)
-        navigate('/home')
+        if (location.pathname === '/') {
+          navigate('/home', { replace: true })
+        }
       })
       .catch(() => {
-        navigate('/main')
+        navigate('/main', { replace: true })
         setIsRedirectFromRoot(true)
       })
-  }, [])
+  }, [user])
 
   return children
 }
