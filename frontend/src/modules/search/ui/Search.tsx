@@ -1,16 +1,21 @@
 import classes from './Search.module.css'
+import { useHackathons } from "@/shared/hooks/useHackathons.ts";
+import { type FormEvent, useState } from "react";
 
-type SearchProps = {
+export const Search = () => {
+  const { filterHacks } = useHackathons()
+  const [searchQuery, setSearchQuery] = useState<string>('')
 
-}
-
-export const Search = (props: SearchProps) => {
-  const {
-
-  } = props
+  const handleSubmit = (e: FormEvent) => {
+    e.preventDefault()
+    filterHacks(searchQuery)
+  }
 
   return (
-    <form className={classes.wrapper}>
+    <form
+      className={classes.wrapper}
+      onSubmit={(e) => handleSubmit(e)}
+    >
       <svg
         className={classes.icon}
         width="17"
@@ -33,6 +38,7 @@ export const Search = (props: SearchProps) => {
         name="search"
         type="search"
         placeholder="Поиск"
+        onChange={(e) => setSearchQuery(e.target.value)}
       />
     </form>
   )

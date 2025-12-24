@@ -4,11 +4,10 @@ import { useHackathons } from "@/shared/hooks/useHackathons.ts";
 import { useEffect } from "react";
 
 export const Home = () => {
-  const {hackathons, getHacks} = useHackathons()
+  const { getHacks } = useHackathons()
 
   useEffect(() => {
     getHacks()
-    console.log(hackathons)
   }, [])
 
   return (

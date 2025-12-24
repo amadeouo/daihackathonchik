@@ -1,7 +1,7 @@
 import { useState } from "react";
 import { api } from "@/shared/utils/api";
 
-type HackathonDataType = {
+export interface HackathonDataType {
   name: string,
   description: string,
   start_date: string,
@@ -15,7 +15,8 @@ type HackathonDataType = {
 }
 
 export const useHackathons = () => {
-  const [hackathons, setHackathons] = useState<Array<HackathonDataType>>([])
+  const [hackathons, setHackathons] = useState<HackathonDataType[]>([])
+  const [filteredHackathons, setFilteredHackathons] = useState<HackathonDataType[]>([])
   const [loading, setLoading] = useState<boolean>(false)
 
   const getHacks = () => {
@@ -26,10 +27,25 @@ export const useHackathons = () => {
         setHackathons(response.data.items)
       })
       .catch((error) => {
-        throw error;
+        console.error('Ошибка загрузки:', error)
+        setHackathons([])
       })
       .finally(() => setLoading(false))
   }
 
-  return {hackathons, loading, getHacks}
+  const filterHacks = (query: string) => {
+    const queryString = query.trim().toLowerCase()
+
+    if (!queryString) {
+      setFilteredHackathons(hackathons)
+    }
+
+    const filteredHackathons = hackathons.filter((hack) => {
+      return hack.name.toLowerCase().includes(queryString) ||
+        hack.description.toLowerCase().includes(queryString)
+    })
+
+    setFilteredHackathons(filteredHackathons)
+  }
+  return {hackathons, loading, filteredHackathons, getHacks, filterHacks }
 }
