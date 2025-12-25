@@ -19,7 +19,7 @@ export const RequireRoute = ({children} : {children: ReactNode}) => {
       .then((response) => {
         setUser(response.data.user)
         if (location.pathname === '/') {
-          navigate('/home', { replace: true })
+          navigate('/hackathons', { replace: true })
         }
       })
       .catch(() => {

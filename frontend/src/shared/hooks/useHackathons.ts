@@ -25,6 +25,7 @@ export const useHackathons = () => {
       .get('/hackathons')
       .then((response) => {
         setHackathons(response.data.items)
+        setFilteredHackathons(response.data.items)
       })
       .catch((error) => {
         console.error('Ошибка загрузки:', error)
@@ -38,6 +39,7 @@ export const useHackathons = () => {
 
     if (!queryString) {
       setFilteredHackathons(hackathons)
+      return
     }
 
     const filteredHackathons = hackathons.filter((hack) => {

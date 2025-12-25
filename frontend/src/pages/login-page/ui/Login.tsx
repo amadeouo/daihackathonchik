@@ -44,7 +44,7 @@ export const Login = () => {
       .get('/auth/me')
       .then((response) => {
         setUser(response.data.user)
-        navigate('/home')
+        navigate('/hackathons')
       })
       .catch(() => {})
       .finally(() => setLoadingAutoAuth(false))

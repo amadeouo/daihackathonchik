@@ -6,7 +6,7 @@ export const Header = () => {
 
   const locationsPath = [
     {
-      path: '/home',
+      path: '/hackathons',
       title: 'Хакатоны'
     },
     {

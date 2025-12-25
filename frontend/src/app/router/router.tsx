@@ -3,7 +3,7 @@ import { MainPage } from "@/pages/main-page/ui";
 import { Login } from "@/pages/login-page/ui";
 import { AppLayout } from "@/widgets/app-layout/ui/AppLayout";
 import { RequireRoute } from "@/app/require-route/RequireRoute.tsx";
-import { Home } from "@/pages/home-page/ui";
+import { Hackathons } from "@/pages/hackathons-page/ui";
 
 export const router = createBrowserRouter([
   {
@@ -11,8 +11,12 @@ export const router = createBrowserRouter([
     element: <RequireRoute> <AppLayout /> </RequireRoute>,
     children: [
       {
-        path: 'home',
-        element: <Home />,
+        path: 'hackathons',
+        element: <Hackathons />,
+      },
+      {
+        path: 'hackathons/:id',
+        element: '',
       },
       {
         path: 'search',

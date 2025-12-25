@@ -33,7 +33,7 @@ export const useLogin = () => {
       .then((response) => {
         const { user } = response.data
         setUser(user)
-        navigate('/home')
+        navigate('/hackathons')
       })
       .catch((error) => {
         setError(error.response?.data?.detail || error.message || "Ошибка авторизации")
