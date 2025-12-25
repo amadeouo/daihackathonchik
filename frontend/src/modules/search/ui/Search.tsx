@@ -1,14 +1,22 @@
 import classes from './Search.module.css'
-import { useHackathons } from "@/shared/hooks/useHackathons.ts";
 import { type FormEvent, useState } from "react";
 
-export const Search = () => {
-  const { filterHacks } = useHackathons()
+type SearchProps = {
+  onFilter: (value: string) => void
+  placeholder: string
+}
+
+export const Search = (props: SearchProps) => {
+  const {
+    onFilter,
+    placeholder,
+  } = props
+
   const [searchQuery, setSearchQuery] = useState<string>('')
 
   const handleSubmit = (e: FormEvent) => {
     e.preventDefault()
-    filterHacks(searchQuery)
+    onFilter(searchQuery)
   }
 
   return (
@@ -37,7 +45,7 @@ export const Search = () => {
         id="search"
         name="search"
         type="search"
-        placeholder="Поиск"
+        placeholder={placeholder}
         onChange={(e) => setSearchQuery(e.target.value)}
       />
     </form>
