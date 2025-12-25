@@ -21,7 +21,7 @@ export const Button = (props: buttonPropsTypes) => {
     <button
       className={classNames(className, classes.button)}
       type={submit ? "submit" : "button"}
-      onSubmit={onClick}
+      onClick={onClick}
     >
       {children}
     </button>
