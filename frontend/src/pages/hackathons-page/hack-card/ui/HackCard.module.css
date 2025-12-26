@@ -1,3 +1,57 @@
 .wrapper {
+  width: 100%;
+  color: var(--color-black);
+  border-radius: var(--border-radius-m);
+  padding: 20px;
+  cursor: pointer;
+  transition:
+    max-height 0.6s ease,
+    box-shadow 0.2s ease,
+    margin-top 0.6s ease;
+  overflow: hidden;
+}
 
+.cardClose {
+  max-height: 150px;
+  margin-bottom: -40px;
+}
+
+.cardOpen {
+  max-height: 500px;
+}
+
+.name {
+  font-size: 28px;
+}
+
+.wrapperSecondary {
+  display: flex;
+  gap: 5px;
+}
+
+.dates, .format {
+  border: 1px solid var(--color-black);
+  border-radius: var(--border-radius-m);
+  padding: 4px 16px;
+  font-size: 16px;
+}
+
+.wrapperDesc {
+  margin-block: 15px;
+  font-size: 15px;
+}
+
+.button {
+  background-color: var(--color-black);
+  color: var(--color-white);
+}
+
+
+@media (max-width: 400px) {
+  .name {
+    font-size: 24px;
+  }
+  .dates, .format {
+    font-size: 12px;
+  }
 }

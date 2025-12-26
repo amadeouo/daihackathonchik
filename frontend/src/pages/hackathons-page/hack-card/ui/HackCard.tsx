@@ -1,28 +1,22 @@
 import classes from './HackCard.module.css'
 import classNames from "classnames/bind";
-import { useState } from "react";
 import { parseDatesHack } from "@/shared/utils/parseDatesHack.ts";
 import { Button } from "@/shared/buttons/button/ui";
 import { useNavigate } from "react-router-dom";
+import type { HackathonDataType } from "@/shared/hooks/useHackathons.ts";
+import { useState } from "react";
 
 
 type HackCardProps = {
-  id: number,
-  name: string,
-  start_date: string,
-  end_date: string,
-  description: string,
-  format: 'offline' | 'online',
+  hackData: HackathonDataType & {
+    format: 'offline' | 'online',
+    color: string
+  }
 }
 
 export const HackCard = (props: HackCardProps) => {
   const {
-    id,
-    name,
-    start_date,
-    end_date,
-    description,
-    format,
+    hackData,
   } = props
 
   const [isOpen, setIsOpen] = useState<boolean>(false)
@@ -36,19 +30,30 @@ export const HackCard = (props: HackCardProps) => {
     cardClose: !isOpen,
   })
 
-  const onButtonClick = () => navigate(`/hackathons/${id}`)
-
   return (
-    <div className={className}>
-      <h3 className={classes.name}>{name}</h3>
-      <div className={classes.wrapperSecondary}>
-        <span className={classes.dates}>{parseDatesHack(start_date, end_date)}</span>
-        <span className={classes.format}>{format}</span>
+    <div
+      className={className}
+      style={{ backgroundColor: hackData.color }}
+      onClick={() => setIsOpen(prev => !prev)}
+    >
+      <div className={classes.header}>
+        <h3 className={classes.name}>{hackData.name}</h3>
+        <div className={classes.wrapperSecondary}>
+          <span className={classes.dates}>{parseDatesHack(hackData.start_date, hackData.end_date)}</span>
+          <span className={classes.format}>{hackData.format}</span>
+        </div>
       </div>
-      <div className={classes.format}>
-        <span className={classes.desc}>{description}</span>
+      <div className={classes.body}>
+        <div className={classes.wrapperDesc}>
+          <span className={classes.desc}>{hackData.description}</span>
+        </div>
+        <Button
+          onClick={() => navigate(`/hackathons/${hackData.id}`)}
+          className={classes.button}
+        >
+          Участвовать
+        </Button>
       </div>
-      <Button onClick={onButtonClick} className={classes.button}>Участвовать</Button>
     </div>
   )
 }

@@ -4,6 +4,14 @@ import { useHackathons } from "@/shared/hooks/useHackathons.ts";
 import { useEffect } from "react";
 import { HackCard } from "@/pages/hackathons-page/hack-card/ui";
 
+const colors = [
+  "#C1D6AB",
+  "#FFFFFF",
+  "#B1AFFF",
+  "#F0E092",
+  "#DA92F0",
+]
+
 export const Hackathons = () => {
   const { filteredHackathons, getHacks, filterHacks } = useHackathons()
 
@@ -17,17 +25,17 @@ export const Hackathons = () => {
         placeholder='Поиск'
         onFilter={filterHacks}
       />
-      {filteredHackathons.map(hack => (
-        <HackCard
-          id={hack.id}
-          name={hack.name}
-          start_date={hack.start_date}
-          end_date={hack.end_date}
-          description={hack.description}
-          format='offline'
-          key={hack.id}
-        />
-      ))}
+      <div className={classes.cardWrapper}>
+        {filteredHackathons.map((hack, index) => (
+          <HackCard
+            hackData={{
+              ...hack,
+              format: 'offline',
+              color: colors[index % colors.length]
+            }}
+          />
+        ))}
+      </div>
 
     </main>
   )
