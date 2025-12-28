@@ -3,3 +3,9 @@
   flex-direction: column;
   gap: 0;
 }
+
+.searchPanel {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 25px;
+}

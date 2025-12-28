@@ -1,6 +1,6 @@
 import classes from './HackCard.module.css'
 import classNames from "classnames/bind";
-import { parseDatesHack } from "@/shared/utils/parseDatesHack.ts";
+import { parseHackDate } from "@/shared/utils/parseHackDate.ts";
 import { Button } from "@/shared/buttons/button/ui";
 import { useNavigate } from "react-router-dom";
 import type { HackathonDataType } from "@/shared/hooks/useHackathons.ts";
@@ -39,8 +39,12 @@ export const HackCard = (props: HackCardProps) => {
       <div className={classes.header}>
         <h3 className={classes.name}>{hackData.name}</h3>
         <div className={classes.wrapperSecondary}>
-          <span className={classes.dates}>{parseDatesHack(hackData.start_date, hackData.end_date)}</span>
-          <span className={classes.format}>{hackData.format}</span>
+          <span className={classes.dates}>
+            {`${parseHackDate(hackData.start_date)} - ${parseHackDate(hackData.end_date)}`}
+          </span>
+          <span className={classes.format}>
+            {hackData.format === 'offline' ? 'Оффлайн' : 'Онлайн' }
+          </span>
         </div>
       </div>
       <div className={classes.body}>

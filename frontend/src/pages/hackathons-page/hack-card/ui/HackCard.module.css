@@ -4,10 +4,6 @@
   border-radius: var(--border-radius-m);
   padding: 20px;
   cursor: pointer;
-  transition:
-    max-height 0.6s ease,
-    box-shadow 0.2s ease,
-    margin-top 0.6s ease;
   overflow: hidden;
 }
 
