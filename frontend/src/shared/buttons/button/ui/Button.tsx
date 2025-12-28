@@ -7,6 +7,7 @@ type buttonPropsTypes = {
   className?: string | object,
   submit?: boolean,
   onClick?: () => void
+  onSubmit?: () => void
 }
 
 export const Button = (props: buttonPropsTypes) => {
@@ -15,6 +16,7 @@ export const Button = (props: buttonPropsTypes) => {
     className,
     submit,
     onClick,
+    onSubmit,
   } = props
 
   return (
@@ -22,6 +24,7 @@ export const Button = (props: buttonPropsTypes) => {
       className={classNames(className, classes.button)}
       type={submit ? "submit" : "button"}
       onClick={onClick}
+      onSubmit={onSubmit}
     >
       {children}
     </button>
